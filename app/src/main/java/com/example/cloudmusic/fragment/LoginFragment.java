@@ -2,6 +2,7 @@ package com.example.cloudmusic.fragment;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatButton;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.cloudmusic.MainActivity;
 import com.example.cloudmusic.R;
 import com.example.cloudmusic.bean.LoginResponse;
 import com.example.cloudmusic.utils.AppStringUtil;
@@ -101,7 +103,9 @@ public class LoginFragment extends BaseFragment {
                     public void onSuccess(String s, Call call, Response response) {
                         if(response.code() == 200) {
                             Toast.makeText(getActivity(), "登陆成功", Toast.LENGTH_SHORT).show();
-
+                            Intent intent=new Intent(getActivity(), MainActivity.class);
+                            startActivity(intent);
+                            getActivity().finish();
                             Gson gson = new Gson();
                             LoginResponse res = gson.fromJson(s, LoginResponse.class);
                         }

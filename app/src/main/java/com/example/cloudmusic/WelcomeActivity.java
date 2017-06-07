@@ -1,10 +1,13 @@
 package com.example.cloudmusic;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
+
+import com.example.cloudmusic.utils.AppConfigUtils;
 
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -27,7 +30,16 @@ public class WelcomeActivity extends AppCompatActivity {
         @Override
         public void run() {
             //判断是否是第一次使用
-            startActivity(new Intent(WelcomeActivity.this,GuideActivity.class));
+            //使用SharedPreferences判断是否是第一次登陆
+            boolean isfirst= AppConfigUtils.getInstance().getIsFirst(WelcomeActivity.this);
+            if (!isfirst){
+                startActivity(new Intent(WelcomeActivity.this,MainActivity.class));
+
+            }
+            else {
+                startActivity(new Intent(WelcomeActivity.this,GuideActivity.class));
+            }
+
             finish();
         }
     };

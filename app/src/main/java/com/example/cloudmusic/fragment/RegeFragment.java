@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.cloudmusic.R;
@@ -52,6 +53,13 @@ public class RegeFragment extends BaseFragment {
                 rege();
             }
         });
+        ImageView ivBack= (ImageView) view.findViewById(R.id.back_rege);
+        ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
 
@@ -75,18 +83,26 @@ public class RegeFragment extends BaseFragment {
                 .execute(new StringCallback() {
 
                     @Override
-                    public void onSuccess(String s, Call call, Response response) {
+                    public void onError(Call call, Response response, Exception e) {
+                        super.onError(call, response, e);
                         closeProgressDialog();
-                        if (response.code()==201){
-                            Toast.makeText(getActivity(), "注册成功", Toast.LENGTH_SHORT).show();
-                        }
-                       else if (response.code()==202){
+                        if (response.code()==202){
                             Toast.makeText(getActivity(), "注册失败，用户名重复", Toast.LENGTH_SHORT).show();
                         }
                         else {
                             Toast.makeText(getActivity(), "注册失败", Toast.LENGTH_SHORT).show();
 
                         }
+
+                    }
+
+                    @Override
+                    public void onSuccess(String s, Call call, Response response) {
+                        closeProgressDialog();
+                        if (response.code()==201){
+                            Toast.makeText(getActivity(), "注册成功", Toast.LENGTH_SHORT).show();
+                        }
+
                     }
 
                 });

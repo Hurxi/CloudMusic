@@ -2,6 +2,7 @@ package com.example.cloudmusic;
 
 import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.media.Image;
 import android.support.v4.view.PagerAdapter;
@@ -21,6 +22,7 @@ import android.widget.TextSwitcher;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
+import com.example.cloudmusic.utils.AppConfigUtils;
 import com.rd.PageIndicatorView;
 
 import java.util.ArrayList;
@@ -191,6 +193,17 @@ public class GuideActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(GuideActivity.this,LoginActivity.class));
+                finish();
+                //存储第一次数据，修改为false
+
+            }
+        });
+        btnTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(GuideActivity.this,LoginActivity.class));
+                finish();
+                AppConfigUtils.getInstance().setIsFirst(false,GuideActivity.this);
             }
         });
     }
