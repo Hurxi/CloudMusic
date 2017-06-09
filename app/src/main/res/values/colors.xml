@@ -5,4 +5,7 @@
     <color name="colorAccent">#FF4081</color>
     <color name="bg_color">#ffd33B32</color>
     <color name="color_unselect">#ddd</color>
+    <color name="color2">#ff902b2b</color>
+    <color name="color4">#ccce3d3a</color>
+    <color name="color5">#55bebebe</color>
 </resources>
